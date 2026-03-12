@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="telaAdm.css">
+    <title>Gerenciamento de Clientes</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="top-bar">
+            <h1>Gerenciamento de Clientes</h1>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar por nome..." onkeyup="buscarCliente()">
+                <button onclick="buscarCliente()">
+                    🔍
+                </button>
+            </div>
+        </header>
+
+        <div class="table-container">
+            <table id="clientesTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody id="clientesBody">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="carregarClientes.js"></script>
+</body>
+
+</html>
