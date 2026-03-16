@@ -1,34 +1,65 @@
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background-color: #f4f6f9;
+  background-color: #f4f7f6; /* Fundo mais claro para destacar a tabela */
+  margin: 0;
 }
 
+/* Ajuste do Container para ocupar a tela e tirar o aspecto de "caixas empilhadas" */
 .container {
-    width: 100%;
-    height: 100vh;
-    padding: 30px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: transparent; /* Remove o fundo branco da camada externa */
+  padding: 0;
+  box-shadow: none;
 }
 
-/* Topo */
+/* Barra superior unificada e preenchendo tudo */
 .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+  width: 100%;
+  background-color: #0ca678;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px; /* Espaçamento interno lateral */
+  margin-bottom: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.top-bar h1 {
-    font-size: 26px;
-    color: #333;
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1; /* Garante que os elementos laterais ajudem no posicionamento */
 }
 
-/* Busca */
+/* Logo com tamanho visível */
+.logo {
+  width: 120px; /* Aumentado para melhor visibilidade */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Título Centralizado e Grande */
+.logo-title h1 {
+  color: #ffffff; /* Branco para contrastar com o verde */
+  font-size: 32px;
+  font-weight: 700;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Caixa de busca */
 .search-box {
     display: flex;
     align-items: center;
@@ -56,14 +87,18 @@ body {
     background-color: #1e4ed8;
 }
 
-/* Tabela */
+/* Área da Tabela */
 .table-container {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    overflow: hidden;
+  width: 95%;
+  margin: 40px auto; /* Espaço após o header */
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
 }
 
+/* Ajustes finos na tabela para combinar com o novo estilo */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -128,4 +163,165 @@ tbody tr:hover {
 
 .btn-acao:hover {
     opacity: 0.8;
+}
+/* Botões e Status mantidos conforme seu padrão anterior */
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    background: rgba(0,0,0,0.55);
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* QUANDO O MODAL ESTIVER ATIVO */
+
+.modal.active{
+    display: flex;
+}
+
+
+/* ================= CONTEÚDO DO MODAL ================= */
+
+.modal-content{
+    background: #ffffff;
+
+    width: 90%;
+    max-width: 900px;
+
+    max-height: 90vh;
+
+    padding: 35px 40px;
+
+    border-radius: 18px;
+
+    overflow-y: auto;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+
+    animation: aparecerModal 0.25s ease;
+}
+
+
+/* ================= ANIMAÇÃO ================= */
+
+@keyframes aparecerModal{
+    from{
+        transform: scale(0.95);
+        opacity:0;
+    }
+    to{
+        transform: scale(1);
+        opacity:1;
+    }
+}
+
+
+/* ================= BOTÃO FECHAR ================= */
+
+.fechar{
+    font-size: 26px;
+    cursor: pointer;
+    float: right;
+    margin-bottom: 10px;
+}
+
+
+/* ================= FORMULÁRIO ================= */
+
+.client-form-container{
+    margin-top: 20px;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.client-form-container h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#2f2f2f;
+}
+
+
+/* ================= GRID DO FORM ================= */
+
+.client-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 30px;
+}
+
+
+/* ================= CAMPOS ================= */
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-size:13px;
+    margin-bottom:8px;
+    color:#555;
+}
+
+.form-group input,
+.form-group select{
+    padding:12px 18px;
+    border-radius:50px;
+    border:1px solid #e0e0e0;
+    outline:none;
+    font-size:14px;
+    background:white;
+    transition:0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#ff6b00;
+    box-shadow:0 0 0 3px rgba(255,107,0,0.15);
+}
+
+
+/* ================= BOTÕES ================= */
+
+.form-buttons{
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+.form-buttons button{
+    padding:12px 25px;
+    border-radius:50px;
+    border:none;
+    cursor:pointer;
+    font-size:14px;
+    margin-right:10px;
+    transition:0.3s;
+}
+
+.btn-save{
+    background:#ff6b00;
+    color:white;
+}
+
+.btn-save:hover{
+    background:#e55d00;
+}
+
+.btn-cancel{
+    background:#dee2e6;
+}
+
+.btn-cancel:hover{
+    background:#ced4da;
 }

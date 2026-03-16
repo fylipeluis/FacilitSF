@@ -1,15 +1,16 @@
 from fastapi import FastAPI, Request
 import mysql.connector
 from mysql.connector import Error
+import os
 
 app = FastAPI()
 
-# Configuração da conexão com o seu MySQL Workbench
 db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'Rapha1802#',
-    'database': 'facility'
+    'host': os.getenv("MYSQLHOST"),
+    'user': os.getenv("MYSQLUSER"),
+    'password': os.getenv("MYSQLPASSWORD"),
+    'database': os.getenv("MYSQLDATABASE"),
+    'port': int(os.getenv("MYSQLPORT", 3306))
 }
 
 @app.post("/webhook-forms")
