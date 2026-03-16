@@ -5,7 +5,7 @@ def conectar():
         host="localhost",
         user="root",
         password="Rapha1802#",
-        database="facility"
+        database="facility",
+        port=3306
     )
-
 
