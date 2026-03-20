@@ -13,7 +13,7 @@
     <div class="container">
 
         <!-- TOPO -->
-        <section class="top-bar">
+        <section class="header">
 
             <div class="logo-title">
                 <img src="./img/Made with insMind-.png" alt="Logo da Empresa" class="logo">
@@ -46,34 +46,6 @@
                 </thead>
 
                 <tbody id="clientesBody">
-
-                    <!-- EXEMPLO DE LINHA (remova depois se quiser) -->
-                    <tr>
-                        <td>João Silva</td>
-                        <td>123.456.789-00</td>
-                        <td>(12) 99999-9999</td>
-                        <td>
-                            <span class="status ativo">Ativo</span>
-                        </td>
-                        <td class="actions">
-                            <button class="btn-edit" onclick="abrirModal()">Editar</button>
-                            <a class="btn-delete">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Maria Oliveira</td>
-                        <td>987.654.321-00</td>
-                        <td>(12) 98888-8888</td>
-                        <td>
-                            <span class="status inativo">Inativo</span>
-                        </td>
-                        <td class="actions">
-                            <button class="btn-edit" onclick="abrirModal()">Editar</button>
-                            <a href="../PaginaClientes/telaCliente.html" class="btn-delete">Excluir</a>
-                        </td>
-                    </tr>
-
                 </tbody>
 
             </table>
@@ -91,57 +63,58 @@
 
             <h2>Dados do Cliente</h2>
 
-            <form class="client-form">
+            <form class="client-form" onsubmit="event.preventDefault(); salvarCliente();">
 
                 <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" placeholder="Digite o nome completo">
+                    <input id="inputNome" type="text">
                 </div>
 
                 <div class="form-group">
                     <label>CPF</label>
-                    <input type="text" placeholder="000.000.000-00">
+                    <input id="inputCPF" type="text">
                 </div>
 
                 <div class="form-group">
                     <label>Telefone</label>
-                    <input type="text" placeholder="(00) 00000-0000">
+                    <input id="inputTelefone" type="text">
                 </div>
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" placeholder="email@exemplo.com">
+                    <input id="inputEmail" type="email">
                 </div>
 
                 <div class="form-group">
                     <label>Valor Emprestado</label>
-                    <input type="number" placeholder="R$ 0,00">
+                    <input id="inputValor" type="number">
                 </div>
 
                 <div class="form-group">
                     <label>Qtd. Parcelas</label>
-                    <input type="text" placeholder="Digite o número de parcelas">
+                    <input id="inputParcelas" type="text">
                 </div>
 
                 <div class="form-group">
                     <label>Status</label>
-                    <select>
-                        <option>Ativo</option>
-                        <option>Inativo</option>
+                    <select id="inputStatus">
+                        <option value="PENDENTE">Pendente</option>
+                        <option value="ATIVO">Ativo</option>
+                        <option value="INATIVO">Inativo</option>
                     </select>
                 </div>
 
                 <div class="form-buttons">
                     <button type="submit" class="btn-save">Salvar</button>
-                    <button type="button" class="btn-cancel">Cancelar</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModal()">Cancelar</button>
                 </div>
 
             </form>
 
         </div>
-            <script src="carregarClientes.js"></script>
-
     </div>
+
+    <script src="./carregarClientes.js"></script>
 
 </body>
 

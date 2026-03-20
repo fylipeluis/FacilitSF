@@ -1,8 +1,22 @@
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from mysql.connector import Error
 from database.connection import conectar
 
 app = FastAPI()
+
+origins = [
+    "http://127.0.0.1:5501",
+    "http://localhost:5501",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # ou ["*"] pra liberar geral (teste)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/webhook-forms")
 async def receber_dados_forms(request: Request):
@@ -36,6 +50,19 @@ async def receber_dados_forms(request: Request):
         return {"status": "erro", "mensagem": str(e)}
     
     finally:
-        if connection.is_connected():
+        if connection and connection.is_connected():
             cursor.close()
             connection.close()
+    
+@app.get("/clientes")
+def listar_clientes():
+    connection = conectar()
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM clientes")
+    resultados = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return resultados
