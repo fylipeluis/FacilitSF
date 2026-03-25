@@ -5,7 +5,7 @@ from database.connection import conectar
 
 app = FastAPI()
 
-origins = ["https://facilitsf-production.up.railway.app/clientes"] 
+origins = ["https://facilitsf-production.up.railway.app"] 
 
 app.add_middleware(
     CORSMiddleware,
