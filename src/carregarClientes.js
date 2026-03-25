@@ -43,7 +43,7 @@ let listaClientes = [];
 
           <td class="btn-actions">
             <button class="btn-edit" data-id="${cliente.id_cliente}">Editar</button>
-            <a class="btn-delete" data-id="${cliente.id_cliente}">Excluir</a>
+            <button class="btn-delete" data-id="${cliente.id_cliente}">Excluir</button>
           </td>
         `;
 
@@ -62,6 +62,25 @@ document.getElementById("clientesBody").addEventListener("click", function (e) {
   if (e.target.classList.contains("btn-edit")) {
     const id = e.target.dataset.id;
     abrirModal(id);
+  }
+});
+
+document.getElementById("clientesBody").addEventListener("click", function (e) {
+  if (e.target.classList.contains("btn-edit")) {
+    const id = e.target.dataset.id;
+    abrirModal(id);
+  }
+
+  if (e.target.classList.contains("btn-delete")) {
+    mostrarConfirmacao(e.target);
+  }
+
+  if (e.target.classList.contains("btn-confirmar-delete")) {
+    confirmarExclusao(e.target);
+  }
+
+  if (e.target.classList.contains("btn-cancelar-delete")) {
+    cancelarExclusao(e.target);
   }
 });
 
@@ -120,4 +139,50 @@ async function salvarCliente() {
 
 function fecharModal() {
   document.getElementById("modalCliente").style.display = "none";
+}
+
+function mostrarConfirmacao(btn) {
+  const td = btn.parentElement;
+  
+  td.dataset.original = td.innerHTML;
+
+  const id = btn.dataset.id;
+
+  td.innerHTML = `
+    <span style="margin-right:10px;">Confirmar?</span>
+    <button class="btn-confirmar-delete" data-id="${id}">Sim</button>
+    <button class="btn-cancelar-delete" data-id="${id}">Cancelar</button>
+  `;
+}
+
+async function confirmarExclusao(btn) {
+  const id = btn.dataset.id;
+  const tr = btn.closest("tr");
+
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/clientes/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) throw new Error("Erro ao excluir");
+
+    // ✨ animação suave
+    tr.style.transition = "0.3s";
+    tr.style.opacity = "0";
+    tr.style.transform = "translateX(50px)";
+
+    setTimeout(() => {
+      tr.remove();
+    }, 300);
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao excluir cliente");
+  }
+}
+
+function cancelarExclusao(btn) {
+  const td = btn.parentElement;
+
+  td.innerHTML = td.dataset.original;
 }

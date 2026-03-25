@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #f4f7f6; /* Fundo mais claro para destacar a tabela */
+  background-color: #e7e8ee; /* Fundo mais claro para destacar a tabela */
   margin: 0;
 }
 
@@ -24,20 +24,21 @@ body {
 /* Barra superior unificada e preenchendo tudo */
 .header {
   width: 100%;
-  background-color: #0ca678;
+  background-color: #46608a;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px; /* Espaçamento interno lateral */
+  padding: 30px 60px; /* Espaçamento interno lateral */
   margin-bottom: 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .logo-title {
   display: flex;
   align-items: center;
   gap: 20px;
-  flex: 1; /* Garante que os elementos laterais ajudem no posicionamento */
+  flex: 1; /* Título à esquerda */
 }
 
 /* Logo com tamanho visível */
@@ -45,16 +46,19 @@ body {
   width: 120px; /* Aumentado para melhor visibilidade */
   height: auto;
   object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* Título Centralizado e Grande */
+/* Título à esquerda */
 .logo-title h1 {
   color: #ffffff; /* Branco para contrastar com o verde */
   font-size: 32px;
   font-weight: 700;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  transform: none;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -68,7 +72,7 @@ body {
 .search-box input {
   padding: 10px 15px;
   width: 250px;
-  border: 1px solid #ccc;
+  border: 1px solid #4c6cd4;
   border-radius: 8px 0 0 8px;
   outline: none;
 }
@@ -76,7 +80,7 @@ body {
 .search-box button {
   padding: 10px 15px;
   border: none;
-  background-color: #2563eb;
+  background-color: #d8d8d8;
   color: white;
   cursor: pointer;
   border-radius: 0 8px 8px 0;
@@ -151,6 +155,7 @@ tbody tr:hover {
 
 .btn-edit,
 .btn-delete {
+  color: white;
   padding: 6px 10px;
   border: none;
   border-radius: 6px;
@@ -172,6 +177,23 @@ tbody tr:hover {
 .btn-actions:hover {
   opacity: 0.8;
 }
+
+.btn-confirmar-delete {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.btn-cancelar-delete {
+  background: #ccc;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
 /* Botões e Status mantidos conforme seu padrão anterior */
 
 .modal {
