@@ -2,10 +2,10 @@ import mysql.connector
 
 def conectar():
     return mysql.connector.connect(
-        host="localhost",
+        host="hopper.proxy.rlwy.net",
         user="root",
         password="Rapha1802#",
-        database="facility",
-        port=3306
+        database="railway",
+        port=35351,
+        connection_timeout=10
     )
-
