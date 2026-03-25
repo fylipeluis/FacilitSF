@@ -3,7 +3,7 @@ let listaClientes = [];
 (function () {
   async function carregarClientes() {
     try {
-      const response = await fetch("http://127.0.0.1:8000/clientes");
+      const response = await fetch("https://facilitsf-production.up.railway.app/clientes");
 
       if (!response.ok)
         throw new Error("Erro na requisição: " + response.statusText);
@@ -117,7 +117,7 @@ async function salvarCliente() {
   };
 
   try {
-    const response = await fetch(`http://127.0.0.1:8000/clientes/${id}`, {
+    const response = await fetch(`https://facilitsf-production.up.railway.app/clientes/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -160,7 +160,7 @@ async function confirmarExclusao(btn) {
   const tr = btn.closest("tr");
 
   try {
-    const response = await fetch(`http://127.0.0.1:8000/clientes/${id}`, {
+    const response = await fetch(`https://facilitsf-production.up.railway.app/clientes/${id}`, {
       method: "DELETE",
     });
 
