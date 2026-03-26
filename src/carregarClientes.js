@@ -181,8 +181,63 @@ async function confirmarExclusao(btn) {
   }
 }
 
+
 function cancelarExclusao(btn) {
   const td = btn.parentElement;
 
   td.innerHTML = td.dataset.original;
+}
+
+
+function buscarClientes() {
+  const termo = document.getElementById("searchInput").value.toLowerCase();
+
+  const clientesFiltrados = listaClientes.filter((cliente) => {
+    return (
+      (cliente.nome_completo || "").toLowerCase().includes(termo) ||
+      (cliente.documento || "").toLowerCase().includes(termo) ||
+      (cliente.telefone || "").toLowerCase().includes(termo)
+    );
+  });
+
+  renderizarTabela(clientesFiltrados);
+}
+
+function renderizarTabela(clientes) {
+  const tbody = document.getElementById("clientesBody");
+
+  if (!tbody) {
+    console.error("Elemento 'clientesBody' não encontrado.");
+    return;
+  }
+
+  tbody.innerHTML = "";
+
+  clientes.forEach(function (cliente) {
+    const tr = document.createElement("tr");
+
+    const statusClass =
+      cliente.status_cliente === "ATIVO"
+        ? "status-ativo"
+        : "status-inativo";
+
+    tr.innerHTML = `
+      <td>${cliente.nome_completo || ""}</td>
+      <td>${cliente.documento || ""}</td>
+      <td>${cliente.telefone || ""}</td>
+      
+      <td>
+        <span class="${statusClass}">
+          ${cliente.status_cliente || ""}
+        </span>
+      </td>
+
+      <td class="btn-actions">
+        <button class="btn-edit" data-id="${cliente.id_cliente}">Editar</button>
+        <button class="btn-delete" data-id="${cliente.id_cliente}">Excluir</button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
 }

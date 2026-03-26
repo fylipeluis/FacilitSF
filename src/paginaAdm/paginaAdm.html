@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Clientes</title>
+    <link rel="stylesheet" href="./telaAdm.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- TOPO -->
+        <section class="header">
+
+            <div class="logo-title">
+                <img src="../img/Made with insMind-.png" alt="Logo da Empresa" class="logo">
+                <h1>Gerenciamento de Clientes</h1>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar por nome..." onkeyup="buscarClientes()">
+                <button onclick="buscarClientes()">
+                    🔍
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- TABELA -->
+        <div class="table-container">
+
+            <table id="clientesTable">
+
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody id="clientesBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- MODAL -->
+    <div id="modalCliente" class="modal">
+        <div class="modal-content">
+
+            <span class="fechar" onclick="fecharModal()">×</span>
+
+            <h2>Dados do Cliente</h2>
+
+            <form class="client-form" onsubmit="event.preventDefault(); salvarCliente();">
+
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input id="inputNome" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input id="inputCPF" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input id="inputTelefone" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input id="inputEmail" type="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Valor Emprestado</label>
+                    <input id="inputValor" type="number">
+                </div>
+
+                <div class="form-group">
+                    <label>Qtd. Parcelas</label>
+                    <input id="inputParcelas" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="inputStatus">
+                        <option value="PENDENTE">Pendente</option>
+                        <option value="ATIVO">Ativo</option>
+                        <option value="INATIVO">Inativo</option>
+                    </select>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-save">Salvar</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModal()">Cancelar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="../carregarClientes.js"></script>
+
+</body>
+
+</html>
